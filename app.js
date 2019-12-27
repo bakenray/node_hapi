@@ -5,6 +5,7 @@ const routeHelloHapi =require('./routes/hello-word')
 const routeShops =require('./routes/shops')
 const routeOrders =require('./routes/orders')
 const pluginHapiSwagger = require('./plugins/hapi-swagger')
+const pluginHapiPagination = require('./plugins/hapi-pagination')
 
 const server = new Hapi.Server();
 server.connection({
@@ -14,7 +15,8 @@ server.connection({
 
 const init = async ()=>{
     await server.register([
-        ...pluginHapiSwagger
+        ...pluginHapiSwagger,
+        pluginHapiPagination
     ])
     server.route([
         ...routeHelloHapi,
